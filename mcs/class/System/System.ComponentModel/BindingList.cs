@@ -209,7 +209,9 @@ namespace System.ComponentModel {
 			EndNew (pending_add_index);
 			if (type_raises_item_changed_events) {
 				foreach ( T item in base.Items ) {
-					(item as INotifyPropertyChanged).PropertyChanged -= Item_PropertyChanged;
+					var obj = (item as INotifyPropertyChanged);
+					if (obj != null)
+						obj.PropertyChanged -= Item_PropertyChanged;
 				}
 			}
 			base.ClearItems ();
@@ -242,13 +244,17 @@ namespace System.ComponentModel {
 			if (raise_list_changed_events)
 				OnListChanged (new ListChangedEventArgs (ListChangedType.ItemAdded, index));
 
-			if (type_raises_item_changed_events)
-				(item as INotifyPropertyChanged).PropertyChanged += Item_PropertyChanged;
+			if (type_raises_item_changed_events) {
+				var obj = (item as INotifyPropertyChanged);
+				if (obj != null)
+					obj.PropertyChanged += Item_PropertyChanged;
+			}
 		}
 
 		void Item_PropertyChanged (object item, PropertyChangedEventArgs args)
 		{
-			OnListChanged (new ListChangedEventArgs (ListChangedType.ItemChanged, base.IndexOf ((T) item)) );
+			int index = base.IndexOf((T) item);
+			OnListChanged (new ListChangedEventArgs (ListChangedType.ItemChanged, index, index) );
 		}
 
 		protected virtual void OnAddingNew (AddingNewEventArgs e)
@@ -269,8 +275,11 @@ namespace System.ComponentModel {
 				throw new NotSupportedException ();
 
 			EndNew (pending_add_index);
-			if (type_raises_item_changed_events) {
-				(base[index] as INotifyPropertyChanged).PropertyChanged -= Item_PropertyChanged;
+			if (type_raises_item_changed_events)
+			{
+				var obj = (base[index] as INotifyPropertyChanged);
+				if (obj != null)
+					obj.PropertyChanged -= Item_PropertyChanged;
 			}
 			base.RemoveItem (index);
 
@@ -296,8 +305,12 @@ namespace System.ComponentModel {
 		protected override void SetItem (int index, T item)
 		{
 			if (type_raises_item_changed_events) {
-				(base[index] as INotifyPropertyChanged).PropertyChanged -= Item_PropertyChanged;
-				(item as INotifyPropertyChanged).PropertyChanged += Item_PropertyChanged;
+				var oldObj = (base[index] as INotifyPropertyChanged);
+				if (oldObj != null)
+					oldObj.PropertyChanged -= Item_PropertyChanged;
+				var newObj = (item as INotifyPropertyChanged);
+				if (newObj != null)
+					newObj.PropertyChanged += Item_PropertyChanged;
 			}
 			base.SetItem (index, item);
 

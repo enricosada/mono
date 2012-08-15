@@ -206,6 +206,156 @@ namespace MonoTests.System.ComponentModel
 			Assert.IsTrue (item_deleted, "4");
 		}
 
+		public class HelpINotifyPropertyChanged : INotifyPropertyChanged
+		{
+			public event PropertyChangedEventHandler PropertyChanged;
+
+			public PropertyChangedEventHandler GetPropertyChangedEventHandler()
+			{
+				return PropertyChanged;
+			}
+
+			public bool RaisePropertyChanged(string name)
+			{
+				if (PropertyChanged == null)
+					return false;
+				PropertyChanged(this, new PropertyChangedEventArgs(name));
+				return true;
+			}
+		}
+
+		[Test]
+		public void ItemPropertyChangedShouldRaiseListItemChanged()
+		{
+			var item1 = new HelpINotifyPropertyChanged();
+			var item2 = new HelpINotifyPropertyChanged();
+			var item3 = new HelpINotifyPropertyChanged();
+
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(item1);
+			l.Add(item2);
+			l.Add(null);
+			l.Add(item3);
+
+			bool called = false;
+			l.ListChanged += (sender, ea) =>
+			{
+				called = true;
+				Assert.AreEqual(l, sender);
+				Assert.AreEqual(1, ea.OldIndex);
+				Assert.AreEqual(1, ea.NewIndex);
+				Assert.AreEqual(ListChangedType.ItemChanged ,ea.ListChangedType);
+				Assert.AreEqual(null, ea.PropertyDescriptor);
+			};
+
+			item2.RaisePropertyChanged("Name");
+
+			Assert.AreEqual(true, called);
+		}
+
+		[Test]
+		public void RemoveShouldUnsubscribeINotifyPropertyChanged()
+		{
+			var item1 = new HelpINotifyPropertyChanged();
+			var item2 = new HelpINotifyPropertyChanged();
+
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(null);
+			l.Add(item1);
+			l.Add(item2);
+			l.Add(null);
+
+			l.Remove(item1);
+
+			var handler = item1.GetPropertyChangedEventHandler();
+
+			bool called = false;
+			l.ListChanged += (sender, args) => { called = true; };
+
+			item1.RaisePropertyChanged("Name");
+
+			Assert.AreEqual(null, handler);
+			Assert.AreEqual(false, called);
+		}
+
+		[Test]
+		public void AddNull()
+		{
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(null);
+
+			Assert.AreEqual(1, l.Count);
+		}
+
+		[Test]
+		public void RemoveNull()
+		{
+			var item1 = new HelpINotifyPropertyChanged();
+			var item2 = new HelpINotifyPropertyChanged();
+
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(null);
+			l.Add(item1);
+			l.Add(item2);
+			l.Add(null);
+
+			bool result = l.Remove(null);
+
+			Assert.AreEqual(true, result);
+			Assert.AreEqual(3, l.Count);
+		}
+
+		[Test]
+		public void ClearShouldUnsubscribeINotifyPropertyChanged()
+		{
+			var item1 = new HelpINotifyPropertyChanged();
+			var item2 = new HelpINotifyPropertyChanged();
+
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(null);
+			l.Add(item1);
+			l.Add(item2);
+			l.Add(null);
+
+			l.Clear();
+
+			var handler1 = item1.GetPropertyChangedEventHandler();
+			var handler2 = item2.GetPropertyChangedEventHandler();
+
+			bool called = false;
+			l.ListChanged += (sender, args) => { called = true; };
+
+			item1.RaisePropertyChanged("Name");
+			item2.RaisePropertyChanged("Name");
+
+			Assert.AreEqual(null, handler1);
+			Assert.AreEqual(null, handler2);
+			Assert.AreEqual(false, called);
+		}
+
+		[Test]
+		public void ClearNull()
+		{
+			var item1 = new HelpINotifyPropertyChanged();
+			var item2 = new HelpINotifyPropertyChanged();
+
+			var l = new BindingList<HelpINotifyPropertyChanged>();
+
+			l.Add(null);
+			l.Add(item1);
+			l.Add(null);
+			l.Add(item2);
+
+			l.Clear();
+
+			Assert.AreEqual(0, l.Count);
+		}
+
 		[Test]
 		[ExpectedException (typeof (NotSupportedException))]
 		public void TestRemoveItem_AllowRemoveFalse ()

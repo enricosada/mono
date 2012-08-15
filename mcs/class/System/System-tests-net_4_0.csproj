@@ -168,9 +168,7 @@
     <Compile Include="Test\System.ComponentModel\ComplexBindingPropertiesAttributeTest.cs" />
     <Compile Include="Test\System.ComponentModel\ComponentConverterTests.cs" />
     <Compile Include="Test\System.ComponentModel\ComponentResourceManagerTest.cs" />
-    <Compile Include="Test\System.ComponentModel\ContainerTest.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Test\System.ComponentModel\ContainerTest.cs" />
     <Compile Include="Test\System.ComponentModel\CultureInfoConverterTest.cs" />
     <Compile Include="Test\System.ComponentModel\DataObjectMethodAttributeTests.cs" />
     <Compile Include="Test\System.ComponentModel\DateTimeConverterTests.cs" />
@@ -203,9 +201,7 @@
     <Compile Include="Test\System.ComponentModel\ToolboxItemAttributeTests.cs" />
     <Compile Include="Test\System.ComponentModel\TypeConverterTests.cs" />
     <Compile Include="Test\System.ComponentModel\TypeDescriptionProviderTest.cs" />
-    <Compile Include="Test\System.ComponentModel\TypeDescriptorTests.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Test\System.ComponentModel\TypeDescriptorTests.cs" />
     <Compile Include="Test\System.ComponentModel\UInt16ConverterTests.cs" />
     <Compile Include="Test\System.ComponentModel\UInt32ConverterTests.cs" />
     <Compile Include="Test\System.ComponentModel\UInt64ConverterTests.cs" />
@@ -484,9 +480,7 @@
     <Compile Include="Test\System.CodeDom\CodeVariableDeclarationStatementCas.cs" />
     <Compile Include="Test\System.CodeDom\CodeVariableReferenceExpressionCas.cs" />
     <Compile Include="Test\System.CodeDom.Compiler\CodeCompilerCas.cs" />
-    <Compile Include="Test\System.CodeDom.Compiler\CodeDomProviderCas.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Test\System.CodeDom.Compiler\CodeDomProviderCas.cs" />
     <Compile Include="Test\System.CodeDom.Compiler\CodeGeneratorCas.cs" />
     <Compile Include="Test\System.CodeDom.Compiler\CodeGeneratorOptionsCas.cs" />
     <Compile Include="Test\System.CodeDom.Compiler\CodeParserCas.cs" />

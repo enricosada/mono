@@ -338,6 +338,10 @@ namespace MonoTests.System
 			Assert.AreEqual (0, Uri.Compare (u1, u2, UriComponents.AbsoluteUri, UriFormat.UriEscaped, StringComparison.CurrentCulture), "null-null");
 
 			u1 = new Uri ("http://www.go-mono.com/Main Page");
+
+			Assert.AreEqual(-1, Uri.Compare(null, u1, UriComponents.AbsoluteUri, UriFormat.UriEscaped, StringComparison.CurrentCulture), "null-null");
+			Assert.AreEqual(1, Uri.Compare(u1, null, UriComponents.AbsoluteUri, UriFormat.UriEscaped, StringComparison.CurrentCulture), "null-null");
+
 			u2 = new Uri ("http://www.go-mono.com/Main%20Page");
 			Assert.AreEqual (0, Uri.Compare (u1, u2, UriComponents.AbsoluteUri, UriFormat.Unescaped, StringComparison.CurrentCulture), "http/space-http/%20-unescaped");
 			Assert.AreEqual (0, Uri.Compare (u1, u2, UriComponents.AbsoluteUri, UriFormat.UriEscaped, StringComparison.CurrentCulture), "http/space-http/%20-escaped");

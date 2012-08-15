@@ -56,6 +56,7 @@ namespace MonoTests.System.ComponentModel {
 			Assert.IsFalse (a.Equals (new DefaultBindingPropertyAttribute ("other")), "2");
 			Assert.IsFalse (a.Equals (new DefaultBindingPropertyAttribute ("Test")), "3");
 			Assert.IsTrue (a.Equals (new DefaultBindingPropertyAttribute ("test")), "4");
+			Assert.IsFalse (a.Equals (new object ()), "5");
 		}
 
 		[Test]

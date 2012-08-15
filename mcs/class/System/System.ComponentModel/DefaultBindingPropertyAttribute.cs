@@ -37,7 +37,7 @@ namespace System.ComponentModel
 	{
 		public static readonly DefaultBindingPropertyAttribute Default;
 		
-		private string name;
+		private readonly string name;
 		
 		static DefaultBindingPropertyAttribute ()
 		{
@@ -57,7 +57,7 @@ namespace System.ComponentModel
 		{
 			DefaultBindingPropertyAttribute other = obj as DefaultBindingPropertyAttribute;
 			
-			if (obj == null)
+			if (other == null)
 				return false;
 				
 			return name == other.Name;

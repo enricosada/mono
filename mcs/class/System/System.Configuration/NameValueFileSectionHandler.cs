@@ -63,7 +63,7 @@ namespace System.Configuration
 
 				ConfigXmlDocument doc = new ConfigXmlDocument ();
 				doc.Load (fullPath);
-				if (doc.DocumentElement.Name != section.Name)
+				if ((doc.DocumentElement == null) || (doc.DocumentElement.Name != section.Name))
 					throw new ConfigurationException ("Invalid root element", doc.DocumentElement);
 
 				pairs = ConfigHelper.GetNameValueCollection (pairs, doc.DocumentElement,

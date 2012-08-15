@@ -60,7 +60,7 @@ namespace System
 		public UriBuilder (string uri)
 		{
 			if (uri == null)
-				throw new ArgumentNullException ("uriString");
+				throw new ArgumentNullException ("uri");
 
 			Uri u = null;
 			if (Uri.TryCreate (uri, UriKind.Absolute, out u)) {

@@ -81,7 +81,7 @@ namespace System.Collections.Generic
 		public SortedList (int capacity, IComparer<TKey> comparer)
 		{
 			if (capacity < 0)
-				throw new ArgumentOutOfRangeException ("initialCapacity");
+				throw new ArgumentOutOfRangeException ("capacity");
 
 			if (capacity == 0)
 				defaultCapacity = 0;
@@ -189,7 +189,7 @@ namespace System.Collections.Generic
 				int current = this.table.Length;
 
 				if (inUse > value) {
-					throw new ArgumentOutOfRangeException("capacity too small");
+					throw new ArgumentOutOfRangeException("value", "capacity too small");
 				}
 				else if (value == 0) {
 					// return to default size
@@ -331,9 +331,9 @@ namespace System.Collections.Generic
 				throw new ArgumentOutOfRangeException();
 			
 			if (arrayIndex >= array.Length)
-				throw new ArgumentNullException("arrayIndex is greater than or equal to array.Length");
+				throw new ArgumentNullException("arrayIndex", "arrayIndex is greater than or equal to array.Length");
 			if (Count > (array.Length - arrayIndex))
-				throw new ArgumentNullException("Not enough space in array from arrayIndex to end of array");
+				throw new ArgumentNullException("arrayIndex", "Not enough space in array from arrayIndex to end of array");
 
 			int i = arrayIndex;
 			foreach (KeyValuePair<TKey, TValue> pair in this)
@@ -430,9 +430,9 @@ namespace System.Collections.Generic
 			if (array.Rank > 1)
 				throw new ArgumentException("array is multi-dimensional");
 			if (arrayIndex >= array.Length)
-				throw new ArgumentNullException("arrayIndex is greater than or equal to array.Length");
+				throw new ArgumentNullException("arrayIndex", "arrayIndex is greater than or equal to array.Length");
 			if (Count > (array.Length - arrayIndex))
-				throw new ArgumentNullException("Not enough space in array from arrayIndex to end of array");
+				throw new ArgumentNullException("arrayIndex", "Not enough space in array from arrayIndex to end of array");
 
 			IEnumerator<KeyValuePair<TKey,TValue>> it = GetEnumerator ();
 			int i = arrayIndex;
@@ -448,19 +448,22 @@ namespace System.Collections.Generic
 
 		public void RemoveAt (int index)
 		{
-			KeyValuePair<TKey, TValue> [] table = this.table;
 			int cnt = Count;
-			if (index >= 0 && index < cnt) {
-				if (index != cnt - 1) {
-					Array.Copy (table, index+1, table, index, cnt-1-index);
-				} else {
-					table [index] = default (KeyValuePair <TKey, TValue>);
-				}
-				--inUse;
-				++modificationCount;
-			} else {
-				throw new ArgumentOutOfRangeException("index out of range");
+			if (index < 0 || index >= cnt)
+				throw new ArgumentOutOfRangeException("index", "index out of range");
+
+			KeyValuePair<TKey, TValue>[] table = this.table;
+
+			if (index != cnt - 1)
+			{
+				Array.Copy(table, index + 1, table, index, cnt - 1 - index);
 			}
+			else
+			{
+				table[index] = default (KeyValuePair<TKey, TValue>);
+			}
+			--inUse;
+			++modificationCount;
 		}
 
 		public int IndexOfKey (TKey key)
@@ -554,7 +557,7 @@ namespace System.Collections.Generic
 		private void PutImpl (TKey key, TValue value, bool overwrite)
 		{
 			if (key == null)
-				throw new ArgumentNullException ("null key");
+				throw new ArgumentNullException ("key", "null key");
 
 			KeyValuePair<TKey, TValue> [] table = this.table;
 
@@ -663,14 +666,14 @@ namespace System.Collections.Generic
 			if (index >= 0 && index < Count)
 				return table [index].Key;
 			else
-				throw new ArgumentOutOfRangeException("Index out of range");
+				throw new ArgumentOutOfRangeException("index", "Index out of range");
 		}
 
 		internal TValue ValueAt (int index) {
 			if (index >= 0 && index < Count)
 				return table [index].Value;
 			else
-				throw new ArgumentOutOfRangeException("Index out of range");
+				throw new ArgumentOutOfRangeException("index", "Index out of range");
 		}
 
 		//
@@ -946,9 +949,9 @@ namespace System.Collections.Generic
 				if (arrayIndex < 0)
 					throw new ArgumentOutOfRangeException();
 				if (arrayIndex >= array.Length)
-					throw new ArgumentOutOfRangeException ("arrayIndex is greater than or equal to array.Length");
+					throw new ArgumentOutOfRangeException ("arrayIndex", "arrayIndex is greater than or equal to array.Length");
 				if (Count > (array.Length - arrayIndex))
-					throw new ArgumentOutOfRangeException("Not enough space in array from arrayIndex to end of array");
+					throw new ArgumentOutOfRangeException("arrayIndex", "Not enough space in array from arrayIndex to end of array");
 
 				int j = arrayIndex;
 				for (int i = 0; i < Count; ++i)
@@ -1071,9 +1074,9 @@ namespace System.Collections.Generic
 				if (arrayIndex < 0)
 					throw new ArgumentOutOfRangeException();
 				if (arrayIndex >= array.Length)
-					throw new ArgumentOutOfRangeException ("arrayIndex is greater than or equal to array.Length");
+					throw new ArgumentOutOfRangeException ("arrayIndex", "arrayIndex is greater than or equal to array.Length");
 				if (Count > (array.Length - arrayIndex))
-					throw new ArgumentOutOfRangeException("Not enough space in array from arrayIndex to end of array");
+					throw new ArgumentOutOfRangeException("arrayIndex", "Not enough space in array from arrayIndex to end of array");
 
 				int j = arrayIndex;
 				for (int i = 0; i < Count; ++i)

@@ -209,7 +209,7 @@ namespace System.Collections.Generic
 			if ( (uint) index < (uint) array.GetLowerBound (0))
 				throw new ArgumentOutOfRangeException ("index");				
 			if (array.Rank != 1)
-				throw new ArgumentException ("array", "Array is multidimensional");
+				throw new ArgumentException("Array is multidimensional", "array");
 			if (array.Length - index + array.GetLowerBound (0) < count)
 				throw new ArgumentException ("number of items exceeds capacity");
 				

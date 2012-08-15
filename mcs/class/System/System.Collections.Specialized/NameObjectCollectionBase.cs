@@ -492,7 +492,7 @@ namespace System.Collections.Specialized
 		protected object[] BaseGetAllValues( Type type )
 		{
 			if (type == null)
-				throw new ArgumentNullException("'type' argument can't be null");
+				throw new ArgumentNullException("type");
 			int cnt = m_ItemsArray.Count;
 			object[] allValues = (object[]) Array.CreateInstance (type, cnt);
 			for(int i=0; i<cnt; i++)

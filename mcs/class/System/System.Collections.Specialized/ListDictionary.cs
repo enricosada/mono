@@ -185,7 +185,7 @@ namespace System.Collections.Specialized
 			DictionaryNode prev;
 			DictionaryNode entry = FindEntry (key, out prev);
 			if (entry != null)
-				throw new ArgumentException ("key", "Duplicate key in add.");
+				throw new ArgumentException("Duplicate key in add.", "key");
 
 			AddImpl (key, value, prev);
 		}

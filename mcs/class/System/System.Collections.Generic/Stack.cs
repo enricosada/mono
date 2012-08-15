@@ -97,7 +97,7 @@ namespace System.Collections.Generic
 			if (array == null)
 				throw new ArgumentNullException ("array");
 			if (arrayIndex < 0)
-				throw new ArgumentOutOfRangeException ("idx");
+				throw new ArgumentOutOfRangeException ("arrayIndex");
 			
 			// this gets copied in the order that it is poped
 			if (_array != null) {

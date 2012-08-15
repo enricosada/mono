@@ -189,15 +189,15 @@ namespace System.Collections.Specialized{
 			if (index < 0)
 				throw new ArgumentOutOfRangeException ("index", "index is less than 0");
 			if (dest.Rank > 1)
-				throw new ArgumentException ("dest", "multidim");
+				throw new ArgumentException ("multidim", "dest");
 
 			if (cachedAll == null)
 				RefreshCachedAll ();
 			try {
 				cachedAll.CopyTo (dest, index);
-		        } catch (ArrayTypeMismatchException) {
-		        	throw new InvalidCastException();
-		        }
+			} catch (ArrayTypeMismatchException) {
+				throw new InvalidCastException();
+			}
 		}
 
 		private void RefreshCachedAll ()

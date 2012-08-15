@@ -60,32 +60,28 @@ namespace System.ComponentModel.Design.Serialization
 			if (member == null)
 				return;
 
+			int argumentsCount = arguments == null ? 0 : arguments.Count;  // null counts as no arguments
+
 			switch (member.MemberType) {
 			// According to docs only these types are allowed, but the docs do
 			// state what happens for other types
 			case MemberTypes.Constructor:
 				ConstructorInfo CI = (ConstructorInfo) member;
-				if (arguments == null) // null counts as no arguments
-					if (CI.GetParameters().Length != 0)
-						throw new ArgumentException ("Invalid number of arguments for this constructor");
-				if (arguments.Count != CI.GetParameters().Length)
+				if (argumentsCount != CI.GetParameters().Length)
 					throw new ArgumentException ("Invalid number of arguments for this constructor");
 				break;
 			case MemberTypes.Method:
 				MethodInfo MI = (MethodInfo) member;
 				if (!MI.IsStatic)
 					throw new ArgumentException ("InstanceDescriptor only describes static (VB.Net: shared) members", "member");
-				if (arguments == null) // null counts as no arguments
-					if (MI.GetParameters().Length != 0)
-						throw new ArgumentException ("Invalid number of arguments for this method", "arguments");
-				if (arguments.Count != MI.GetParameters().Length)
+				if (argumentsCount != MI.GetParameters().Length)
 					throw new ArgumentException ("Invalid number of arguments for this method");
 				break;
 			case MemberTypes.Field:
 				FieldInfo FI = (FieldInfo) member;
 				if (!FI.IsStatic)
 					throw new ArgumentException ("Parameter must be static");
-				if (arguments != null && arguments.Count != 0) // null counts as no arguments
+				if (argumentsCount != 0)
 					throw new ArgumentException ("Field members do not take any arguments");
 				break;
 			case MemberTypes.Property:

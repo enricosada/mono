@@ -60,7 +60,7 @@ namespace System.ComponentModel
 		public override object ConvertFrom (ITypeDescriptorContext context,
 						    CultureInfo culture, object value)
 		{
-			if (value.GetType() == typeof (string)) {
+			if (value is string) {
 				string GuidString = (string) value;
 				try {
 					return new Guid (GuidString);
@@ -77,7 +77,7 @@ namespace System.ComponentModel
 			if (value is Guid) {
 				Guid guid = (Guid) value;
 
-				if (destinationType == typeof (string) && value != null)
+				if (destinationType == typeof (string))
 					// LAMESPEC MS seems to always parse "D" type
 					return guid.ToString("D");
 

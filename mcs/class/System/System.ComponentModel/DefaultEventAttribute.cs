@@ -37,7 +37,7 @@ namespace System.ComponentModel
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class DefaultEventAttribute : Attribute
 	{
-		private string eventName;
+		private readonly string eventName;
 
 		public static readonly DefaultEventAttribute Default = new DefaultEventAttribute (null);
 

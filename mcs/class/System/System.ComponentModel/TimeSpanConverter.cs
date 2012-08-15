@@ -61,7 +61,7 @@ namespace System.ComponentModel
 
 		public override object ConvertFrom (ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
-			if (value.GetType() == typeof (string)) {
+			if (value is string) {
 				string TimeSpanString = (string) value;
 				try {
 					// LAMESPEC Doc says TimeSpan uses Ticks, but MS uses time format:

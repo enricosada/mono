@@ -37,7 +37,7 @@ namespace System.ComponentModel
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class DefaultPropertyAttribute : Attribute
 	{
-		private string property_name;
+		private readonly string property_name;
 
 		public static readonly DefaultPropertyAttribute Default = new DefaultPropertyAttribute (null);
 

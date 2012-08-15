@@ -440,6 +440,9 @@ namespace System.ComponentModel {
 
 		private bool AddInternal (string str_input, out int testPosition, out MaskedTextResultHint resultHint, bool only_test)
 		{
+			if (str_input == null)
+				throw new ArgumentNullException("str_input");
+
 			EditPosition [] edit_positions;
 			
 			if (only_test) {
@@ -447,9 +450,6 @@ namespace System.ComponentModel {
 			} else {
 				edit_positions = this.edit_positions;
 			}
-
-			if (str_input == null)
-				throw new ArgumentNullException ("input");
 
 			if (str_input.Length == 0) {
 				resultHint = MaskedTextResultHint.NoEffect;

@@ -130,12 +130,13 @@ namespace System.IO.Ports
 			CheckDisposed ();
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ("offset or count less than zero.");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count )
-				throw new ArgumentException ("offset+count",
-							      "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 			
 			int error;
 			bool poll_result = poll_serial (fd, out error, read_timeout);
@@ -173,12 +174,13 @@ namespace System.IO.Ports
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ();
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count)
-				throw new ArgumentException ("offset+count",
-							     "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			// FIXME: this reports every write error as timeout
 			if (write_serial (fd, buffer, offset, count, write_timeout) < 0)

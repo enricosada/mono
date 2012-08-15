@@ -127,7 +127,7 @@ namespace System.Net
 			if (offset < 0 || offset > buffer.Length)
 				throw new ArgumentOutOfRangeException ("offset");
 			if (size < 0 || size > buffer.Length - offset)
-				throw new ArgumentOutOfRangeException ("offset+size");
+				throw new ArgumentOutOfRangeException ("size", "offset+size");
 
 			ReadDelegate del = ReadInternal;
 			return del.BeginInvoke (buffer, offset, size, cb, state);
@@ -182,7 +182,7 @@ namespace System.Net
 			if (offset < 0 || offset > buffer.Length)
 				throw new ArgumentOutOfRangeException ("offset");
 			if (size < 0 || size > buffer.Length - offset)
-				throw new ArgumentOutOfRangeException ("offset+size");
+				throw new ArgumentOutOfRangeException ("size", "offset+size");
 
 			WriteDelegate del = WriteInternal;
 			return del.BeginInvoke (buffer, offset, size, cb, state);

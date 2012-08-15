@@ -324,7 +324,11 @@ namespace System.Diagnostics
 			string name = null;
 			SourceLevels levels = SourceLevels.Error;
 			StringDictionary atts = new StringDictionary ();
-			foreach (XmlAttribute a in node.Attributes) {
+			var attributes = node.Attributes;
+			if (attributes == null)
+				throw new ConfigurationException("Mandatory attribute 'name' is missing in 'source' element.");
+			foreach (XmlAttribute a in attributes)
+			{
 				switch (a.Name) {
 				case "name":
 					name = a.Value;

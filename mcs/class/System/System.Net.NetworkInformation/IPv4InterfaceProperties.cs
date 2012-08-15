@@ -101,20 +101,17 @@ namespace System.Net.NetworkInformation {
 
 		public override int Mtu {
 			get {
-				string iface_path = (iface as LinuxNetworkInterface).IfacePath + "mtu";
-				int ret = 0;
+				string iface_path = ((LinuxNetworkInterface) iface).IfacePath + "mtu";
 
 				if (File.Exists (iface_path)) {
 					string val = NetworkInterface.ReadLine (iface_path);
 					
-					try {
-						ret = Int32.Parse (val);
-					} catch {
-					}
+					int ret;
+					if (Int32.TryParse (val, out ret))
+						return ret;
 				}
 
-				return ret;
-						
+				return 0;
 			}
 		}
 	}

@@ -223,7 +223,7 @@ namespace System.Net
 			set {
 				CheckRequestStarted ();
 				if (value == null)
-					throw new ArgumentNullException ("Method string cannot be null");
+					throw new ArgumentNullException ("value", "Method string cannot be null");
 
 				if (value.Length == 0 || Array.BinarySearch (supportedCommands, value) < 0)
 					throw new ArgumentException ("Method not supported", "value");
@@ -272,7 +272,7 @@ namespace System.Net
 			set {
 				CheckRequestStarted ();
 				if (value == null || value.Length == 0)
-					throw new ArgumentException ("RenameTo value can't be null or empty", "RenameTo");
+					throw new ArgumentException ("RenameTo value can't be null or empty", "value");
 
 				renameTo = value;
 			}
@@ -396,10 +396,10 @@ namespace System.Net
 
 		public override WebResponse EndGetResponse (IAsyncResult asyncResult) {
 			if (asyncResult == null)
-				throw new ArgumentNullException ("AsyncResult cannot be null!");
+				throw new ArgumentNullException ("asyncResult", "AsyncResult cannot be null");
 
 			if (!(asyncResult is FtpAsyncResult) || asyncResult != this.asyncResult)
-				throw new ArgumentException ("AsyncResult is from another request!");
+				throw new ArgumentException ("AsyncResult is from another request", "asyncResult");
 
 			FtpAsyncResult asyncFtpResult = (FtpAsyncResult) asyncResult;
 			if (!asyncFtpResult.WaitUntilComplete (timeout, false)) {

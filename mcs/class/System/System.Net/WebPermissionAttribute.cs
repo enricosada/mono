@@ -55,7 +55,7 @@ namespace System.Net {
 			get {
 				if (m_accept == null)
 					return null;
-				return (m_accept as WebPermissionInfo).Info; 
+				return ((WebPermissionInfo) m_accept).Info; 
 			}
 			set { 
 				if (m_accept != null)
@@ -68,13 +68,13 @@ namespace System.Net {
 			get {
 				if (m_accept == null)
 					return null;
-				return (m_accept as WebPermissionInfo).Info; 
+				return ((WebPermissionInfo) m_accept).Info; 
 			}
 			set { 
 				if (m_accept != null)
 					AlreadySet ("Accept", "AcceptPattern");
 				if (value == null) 
-					throw new ArgumentNullException ("AcceptPattern");
+					throw new ArgumentNullException ("value", "AcceptPattern");
 
 				m_accept = new WebPermissionInfo (WebPermissionInfoType.InfoUnexecutedRegex , value); 
 			}
@@ -84,7 +84,7 @@ namespace System.Net {
 			get {
 				if (m_connect == null)
 					return null;
-				return (m_connect as WebPermissionInfo).Info; 
+				return ((WebPermissionInfo) m_connect).Info; 
 			}
 			set { 
 				if (m_connect != null)
@@ -97,13 +97,13 @@ namespace System.Net {
 			get {
 				if (m_connect == null)
 					return null;
-				return (m_connect as WebPermissionInfo).Info; 
+				return ((WebPermissionInfo) m_connect).Info; 
 			}
 			set { 
 				if (m_connect != null)
 					AlreadySet ("Connect", "ConnectConnectPattern");
 				if (value == null) 
-					throw new ArgumentNullException ("ConnectPattern");
+					throw new ArgumentNullException ("value", "ConnectPattern");
 
 				m_connect = new WebPermissionInfo (WebPermissionInfoType.InfoUnexecutedRegex , value);
 			}

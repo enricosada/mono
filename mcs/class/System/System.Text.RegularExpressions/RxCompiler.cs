@@ -88,14 +88,12 @@ namespace System.Text.RegularExpressions {
 		}
 
 		void BeginLink (LinkRef lref) {
-			RxLinkRef link = lref as RxLinkRef;
-			link.PushInstructionBase (curpos);
+			((RxLinkRef) lref).PushInstructionBase (curpos);
 		}
 
 		void EmitLink (LinkRef lref)
 		{
-			RxLinkRef link = lref as RxLinkRef;
-			link.PushOffsetPosition (curpos);
+			((RxLinkRef) lref).PushOffsetPosition (curpos);
 			Emit ((ushort)0);
 		}
 

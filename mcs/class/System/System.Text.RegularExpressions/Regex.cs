@@ -182,7 +182,7 @@ namespace System.Text.RegularExpressions {
 			get { return cache.Capacity; }
 			set {
 				if (value < 0)
-					throw new ArgumentOutOfRangeException ("CacheSize");
+					throw new ArgumentOutOfRangeException ("value", "CacheSize");
 
 				cache.Capacity = value;	
 			}

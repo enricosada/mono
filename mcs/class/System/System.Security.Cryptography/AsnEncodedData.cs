@@ -104,7 +104,7 @@ namespace System.Security.Cryptography {
 			get { return _raw; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("RawData");
+					throw new ArgumentNullException ("value", "RawData");
 				_raw = (byte[])value.Clone ();
 			}
 		}

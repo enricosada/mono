@@ -88,7 +88,7 @@ namespace System.Security.Cryptography.X509Certificates {
 				if (export_required) {
 					RSAParameters rsap = certificate.RSA.ExportParameters (false);
 					_key = RSA.Create ();
-					(_key as RSA).ImportParameters (rsap);
+					((RSA) _key).ImportParameters (rsap);
 				}
 			} else {
 #if !MOONLIGHT
@@ -103,7 +103,7 @@ namespace System.Security.Cryptography.X509Certificates {
 				if (export_required) {
 					DSAParameters rsap = certificate.DSA.ExportParameters (false);
 					_key = DSA.Create ();
-					(_key as DSA).ImportParameters (rsap);
+					((DSA) _key).ImportParameters (rsap);
 				}
 #endif
 			}

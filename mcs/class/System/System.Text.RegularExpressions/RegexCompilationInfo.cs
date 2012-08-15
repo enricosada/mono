@@ -50,9 +50,9 @@ namespace System.Text.RegularExpressions {
 			get { return name; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("Name");
+					throw new ArgumentNullException ("value", "Name");
 				if (value.Length == 0)
-					throw new ArgumentException ("Name");
+					throw new ArgumentException ("value", "Name");
 				name = value;
 			}
 		}
@@ -61,7 +61,7 @@ namespace System.Text.RegularExpressions {
 			get { return nspace; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("Namespace");
+					throw new ArgumentNullException ("value", "Namespace");
 				nspace = value;
 			}
 		}

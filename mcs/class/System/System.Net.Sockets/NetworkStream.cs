@@ -64,7 +64,7 @@ namespace System.Net.Sockets
 		public NetworkStream (Socket socket, FileAccess access, bool owns_socket)
 		{
 			if (socket == null)
-				throw new ArgumentNullException ("socket is null");
+				throw new ArgumentNullException ("socket", "socket is null");
 			if (socket.SocketType != SocketType.Stream)
 				throw new ArgumentException ("Socket is not of type Stream", "socket");
 			if (!socket.Connected)
@@ -205,13 +205,13 @@ namespace System.Net.Sockets
 			IAsyncResult retval;
 
 			if (buffer == null)
-				throw new ArgumentNullException ("buffer is null");
+				throw new ArgumentNullException ("buffer");
 			int len = buffer.Length;
 			if(offset<0 || offset>len) {
-				throw new ArgumentOutOfRangeException("offset exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("offset", "offset exceeds the size of buffer");
 			}
 			if(size<0 || offset+size>len) {
-				throw new ArgumentOutOfRangeException("offset+size exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("size", "offset+size exceeds the size of buffer");
 			}
 
 			Socket s = socket;
@@ -236,14 +236,14 @@ namespace System.Net.Sockets
 			IAsyncResult retval;
 
 			if (buffer == null)
-				throw new ArgumentNullException ("buffer is null");
+				throw new ArgumentNullException ("buffer");
 
 			int len = buffer.Length;
 			if(offset<0 || offset>len) {
-				throw new ArgumentOutOfRangeException("offset exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("offset", "offset exceeds the size of buffer");
 			}
 			if(size<0 || offset+size>len) {
-				throw new ArgumentOutOfRangeException("offset+size exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("size", "offset+size exceeds the size of buffer");
 			}
 
 			Socket s = socket;
@@ -314,7 +314,7 @@ namespace System.Net.Sockets
 			int res;
 
 			if (ar == null)
-				throw new ArgumentNullException ("async result is null");
+				throw new ArgumentNullException ("ar");
 
 			Socket s = socket;
 
@@ -334,7 +334,7 @@ namespace System.Net.Sockets
 		{
 			CheckDisposed ();
 			if (ar == null)
-				throw new ArgumentNullException ("async result is null");
+				throw new ArgumentNullException ("ar");
 
 			Socket s = socket;
 
@@ -360,12 +360,12 @@ namespace System.Net.Sockets
 			int res;
 
 			if (buffer == null)
-				throw new ArgumentNullException ("buffer is null");
+				throw new ArgumentNullException ("buffer");
 			if(offset<0 || offset>buffer.Length) {
-				throw new ArgumentOutOfRangeException("offset exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("offset", "offset exceeds the size of buffer");
 			}
 			if(size < 0 || offset+size>buffer.Length) {
-				throw new ArgumentOutOfRangeException("offset+size exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("size", "offset+size exceeds the size of buffer");
 			}
 
 			Socket s = socket;
@@ -404,10 +404,10 @@ namespace System.Net.Sockets
 				throw new ArgumentNullException ("buffer");
 
 			if (offset < 0 || offset > buffer.Length)
-				throw new ArgumentOutOfRangeException("offset exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("offset", "offset exceeds the size of buffer");
 
 			if (size < 0 || size > buffer.Length - offset)
-				throw new ArgumentOutOfRangeException("offset+size exceeds the size of buffer");
+				throw new ArgumentOutOfRangeException("size", "offset+size exceeds the size of buffer");
 
 			Socket s = socket;
 

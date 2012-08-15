@@ -37,7 +37,7 @@ namespace System.Net.NetworkInformation {
 		public PingOptions (int ttl, bool dontFragment)
 		{
 			if (ttl <= 0)
-				throw new ArgumentOutOfRangeException ("Must be greater than zero.", "ttl");
+				throw new ArgumentOutOfRangeException ("ttl", "Must be greater than zero.");
 			this.ttl = ttl;
 			this.dont_fragment = dontFragment;
 		}

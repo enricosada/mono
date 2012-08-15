@@ -145,9 +145,9 @@ namespace System.Net {
 				break;
 			case "MAX-AGE": // RFC Style Set-Cookie2
 				if (cookie.Expires == DateTime.MinValue) {
-					try {
-					cookie.Expires = cookie.TimeStamp.AddSeconds (UInt32.Parse (val));
-					} catch {}
+					uint maxAge;
+					if (UInt32.TryParse (val, out maxAge))
+						cookie.Expires = cookie.TimeStamp.AddSeconds (maxAge);
 				}
 				break;
 			case "EXPIRES": // Netscape Style Set-Cookie
@@ -172,9 +172,9 @@ namespace System.Net {
 				cookie.Secure = true;
 				break;
 			case "VERSION":
-				try {
-					cookie.Version = (int) UInt32.Parse (val);
-				} catch {}
+				uint version;
+				if (UInt32.TryParse (val, out version))
+					cookie.Version = (int) version;
 				break;
 			}
 		}
@@ -248,13 +248,12 @@ namespace System.Net {
 				return DateTime.MinValue;
 
 			for (int i = 0; i < cookieExpiresFormats.Length; i++) {
-				try {
-					DateTime cookieExpiresUtc = DateTime.ParseExact (value, cookieExpiresFormats [i], CultureInfo.InvariantCulture);
-
+				DateTime cookieExpiresUtc;
+				if (DateTime.TryParseExact (value, cookieExpiresFormats [i], CultureInfo.InvariantCulture, DateTimeStyles.None, out cookieExpiresUtc)) {
 					//convert UTC/GMT time to local time
-					cookieExpiresUtc = DateTime.SpecifyKind (cookieExpiresUtc, DateTimeKind.Utc);
-					return TimeZone.CurrentTimeZone.ToLocalTime (cookieExpiresUtc);
-				} catch {}
+					cookieExpiresUtc = DateTime.SpecifyKind(cookieExpiresUtc, DateTimeKind.Utc);
+					return TimeZone.CurrentTimeZone.ToLocalTime(cookieExpiresUtc);
+				}
 			}
 
 			//If we can't parse Expires, use cookie as session cookie (expires is DateTime.MinValue)

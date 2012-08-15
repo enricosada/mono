@@ -99,7 +99,7 @@ namespace System.IO.Ports
 			if (!SetCommTimeouts(handle, timeouts))
 				ReportIOError (null);
 
-			/// Set DTR and RTS
+			// Set DTR and RTS
 			SetSignal(SerialSignal.Dtr, dtr_enable);
 
 			if (hs != Handshake.RequestToSend &&
@@ -253,12 +253,13 @@ namespace System.IO.Ports
 			CheckDisposed ();
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ("offset or count less than zero.");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count )
-				throw new ArgumentException ("offset+count",
-							      "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			int bytes_read;
 
@@ -295,12 +296,13 @@ namespace System.IO.Ports
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ();
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count)
-				throw new ArgumentException ("offset+count",
-							     "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			int bytes_written = 0;
 

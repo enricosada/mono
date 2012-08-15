@@ -454,7 +454,7 @@ namespace System.Collections.Specialized
 		protected object BaseGet( string name )
 		{
 			_Item item = FindFirstMatchedItem(name);
-			/// CAUTION: The BaseGet method does not distinguish between a null reference which is returned because the specified key is not found and a null reference which is returned because the value associated with the key is a null reference.
+			// CAUTION: The BaseGet method does not distinguish between a null reference which is returned because the specified key is not found and a null reference which is returned because the value associated with the key is a null reference.
 			if (item==null)
 				return null;
 			else

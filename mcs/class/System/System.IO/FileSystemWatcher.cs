@@ -172,11 +172,7 @@ namespace System.IO {
 				if (mangledFilter != null)
 					return mangledFilter;
 
-				string filterLocal = "*.*";
-				if (!(watcher.GetType () == typeof (WindowsWatcher)))
-					filterLocal = "*";
-
-				return filterLocal;
+				return watcher is WindowsWatcher ? "*.*" : "*";
 			}
 		}
 

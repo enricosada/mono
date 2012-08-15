@@ -238,7 +238,7 @@ namespace System.Diagnostics
 		[DesignerSerializationVisibility (DesignerSerializationVisibility.Hidden), Browsable (false)]
 		public string[] Verbs {
 			get {
-				string ext = filename == null | filename.Length == 0 ? 
+				string ext = filename == null || filename.Length == 0 ? 
 					null : Path.GetExtension (filename);
 				if (ext == null)
 					return empty;

@@ -1607,7 +1607,7 @@ namespace System.Net.Sockets
 			if (e.BufferList != null)
 				throw new NotSupportedException ("Mono doesn't support using BufferList at this point.");
 			if (e.RemoteEndPoint == null)
-				throw new ArgumentNullException ("remoteEP", "Value cannot be null.");
+				throw new ArgumentNullException ("e", "RemoteEndPoint cannot be null.");
 
 			e.curSocket = this;
 			e.Worker.Init (this, e, SocketOperation.ReceiveFrom);
@@ -1854,7 +1854,7 @@ namespace System.Net.Sockets
 				throw new ObjectDisposedException (GetType ().ToString ());
 
 			if (buf == null)
-				throw new ArgumentNullException ("buffer");
+				throw new ArgumentNullException ("buf");
 
 			CheckRange (buf, offset, size);
 
@@ -1874,7 +1874,7 @@ namespace System.Net.Sockets
 				throw new ObjectDisposedException (GetType ().ToString ());
 
 			if (buf == null)
-				throw new ArgumentNullException ("buffer");
+				throw new ArgumentNullException ("buf");
 
 			CheckRange (buf, offset, size);
 
@@ -1927,7 +1927,7 @@ namespace System.Net.Sockets
 			if (e.BufferList != null)
 				throw new NotSupportedException ("Mono doesn't support using BufferList at this point.");
 			if (e.RemoteEndPoint == null)
-				throw new ArgumentNullException ("remoteEP", "Value cannot be null.");
+				throw new ArgumentNullException ("e", "RemoteEndPoint cannot be null.");
 
 			e.curSocket = this;
 			e.Worker.Init (this, e, SocketOperation.SendTo);

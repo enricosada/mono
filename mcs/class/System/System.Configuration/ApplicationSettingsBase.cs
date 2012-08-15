@@ -276,7 +276,7 @@ namespace System.Configuration {
 						properties = new SettingsPropertyCollection ();
 
 						Type this_type = GetType();
-						SettingsProviderAttribute[] provider_attrs = (SettingsProviderAttribute[])this_type.GetCustomAttributes (typeof (SettingsProviderAttribute), false);;
+						SettingsProviderAttribute[] provider_attrs = (SettingsProviderAttribute[])this_type.GetCustomAttributes (typeof (SettingsProviderAttribute), false);
 						if (provider_attrs != null && provider_attrs.Length != 0) {
 							Type provider_type = Type.GetType (provider_attrs[0].ProviderTypeName);
 							SettingsProvider provider = (SettingsProvider) Activator.CreateInstance (provider_type);

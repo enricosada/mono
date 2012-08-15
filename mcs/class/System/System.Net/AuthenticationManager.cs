@@ -64,12 +64,12 @@ namespace System.Net
 				AuthenticationModulesSection s = cfg as AuthenticationModulesSection;
 				if (s != null) {
 					foreach (AuthenticationModuleElement element in s.AuthenticationModules) {
-						IAuthenticationModule module = null;
 						try {
 							Type type = Type.GetType (element.Type, true);
-							module = (IAuthenticationModule) Activator.CreateInstance (type);
+							IAuthenticationModule module;
+							module = (IAuthenticationModule)Activator.CreateInstance(type);
+							modules.Add (module);
 						} catch {}
-						modules.Add (module);
 					}
 				}
 #else

@@ -39,7 +39,7 @@ namespace System.Net {
 		public SocketAddress (AddressFamily family, int size)
 		{
 			if(size<2) {
-				throw new ArgumentOutOfRangeException("size is too small");
+				throw new ArgumentOutOfRangeException("size", "size is too small");
 			}
 			
 			data=new byte[size];

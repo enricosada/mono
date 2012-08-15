@@ -61,9 +61,9 @@ namespace System.Security.Permissions {
 			get { return _type; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("PermissionAccessType");
+					throw new ArgumentNullException ("value", "PermissionAccessType");
 				if (!value.IsEnum)
-					throw new ArgumentException ("!Enum", "PermissionAccessType");
+					throw new ArgumentException ("PermissionAccessType is not an Enu", "value");
 				_type = value;
 			}
 		}
@@ -72,9 +72,9 @@ namespace System.Security.Permissions {
 			get { return _tags; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("TagNames");
+					throw new ArgumentNullException ("value", "TagNames");
 				if (value.Length == 0)
-					throw new ArgumentException ("Length==0", "TagNames");
+					throw new ArgumentException ("TagNames has length zero", "value");
 				_tags = value;
 			}
 		}
@@ -362,7 +362,7 @@ namespace System.Security.Permissions {
 				if (name == null)
 					name = "(null)";
 				msg = String.Format (msg, name);
-				throw new ArgumentException (msg, "MachineName");
+				throw new ArgumentException (msg, "name");
 			}
 		}
 

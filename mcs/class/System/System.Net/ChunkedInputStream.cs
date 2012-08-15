@@ -83,12 +83,18 @@ namespace System.Net {
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 
-			int len = buffer.Length;
-			if (offset < 0 || offset > len)
-				throw new ArgumentOutOfRangeException ("offset exceeds the size of buffer");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
-			if (count < 0 || offset > len - count)
-				throw new ArgumentOutOfRangeException ("offset+size exceeds the size of buffer");
+			int len = buffer.Length;
+			
+			if (offset > len)
+				throw new ArgumentOutOfRangeException ("offset", "offset exceeds the size of buffer");
+
+			if (offset > len - count)
+				throw new ArgumentOutOfRangeException("offset", "offset+size exceeds the size of buffer");
 
 			HttpStreamAsyncResult ares = new HttpStreamAsyncResult ();
 			ares.Callback = cback;

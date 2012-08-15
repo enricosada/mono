@@ -64,9 +64,9 @@ namespace System.Security.Cryptography.X509Certificates {
 		public new X509Certificate2 this [int index] {
 			get {
 				if (index < 0)
-					throw new ArgumentOutOfRangeException ("negative index");
+					throw new ArgumentOutOfRangeException ("index", "negative index");
 				if (index >= InnerList.Count)
-					throw new ArgumentOutOfRangeException ("index >= Count");
+					throw new ArgumentOutOfRangeException ("index", "index >= Count");
 				return (X509Certificate2) InnerList [index];
 			}
 			set { InnerList [index] = value; }
@@ -365,9 +365,9 @@ namespace System.Security.Cryptography.X509Certificates {
 			if (certificate == null)
 				throw new ArgumentNullException ("certificate");
 			if (index < 0)
-				throw new ArgumentOutOfRangeException ("negative index");
+				throw new ArgumentOutOfRangeException ("index", "negative index");
 			if (index >= InnerList.Count)
-				throw new ArgumentOutOfRangeException ("index >= Count");
+				throw new ArgumentOutOfRangeException ("index", "index >= Count");
 
 			InnerList.Insert (index, certificate);
 		}
@@ -391,7 +391,7 @@ namespace System.Security.Cryptography.X509Certificates {
 		public void RemoveRange (X509Certificate2[] certificates)
 		{
 			if (certificates == null)
-				throw new ArgumentNullException ("certificate");
+				throw new ArgumentNullException ("certificates");
 
 			foreach (X509Certificate2 x in certificates)
 				Remove (x);
@@ -401,7 +401,7 @@ namespace System.Security.Cryptography.X509Certificates {
 		public void RemoveRange (X509Certificate2Collection certificates) 
 		{
 			if (certificates == null)
-				throw new ArgumentNullException ("certificate");
+				throw new ArgumentNullException ("certificates");
 
 			foreach (X509Certificate2 x in certificates)
 				Remove (x);

@@ -289,7 +289,7 @@ namespace Mono.CSharp
 			{
 				GenerateExpression (expression.TargetObject);
 				Output.Write ('.');
-			};
+			}
 			Output.Write (GetSafeName (expression.MethodName));
 			if (expression.TypeArguments.Count > 0)
 				Output.Write (GetTypeArguments (expression.TypeArguments));

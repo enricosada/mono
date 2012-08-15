@@ -171,7 +171,7 @@ namespace System.Net.Configuration
 				ThrowException ("Required attribute not found: " + attKey, node);
 			}
 
-			XmlNode att = node.Attributes.RemoveNamedItem (attKey);
+			XmlNode att = node.Attributes == null? null : node.Attributes.RemoveNamedItem(attKey);
 			if (att == null) {
 				if (optional)
 					return null;

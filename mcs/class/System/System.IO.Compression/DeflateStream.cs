@@ -200,14 +200,14 @@ namespace System.IO.Compression {
 			if (disposed)
 				throw new ObjectDisposedException (GetType ().FullName);
 			if (dest == null)
-				throw new ArgumentNullException ("Destination array is null.");
+				throw new ArgumentNullException ("dest", "Destination array is null.");
 			if (!CanRead)
 				throw new InvalidOperationException ("Stream does not support reading.");
 			int len = dest.Length;
 			if (dest_offset < 0 || count < 0)
 				throw new ArgumentException ("Dest or count is negative.");
 			if (dest_offset > len)
-				throw new ArgumentException ("destination offset is beyond array size");
+				throw new ArgumentException ("destination offset is beyond array size", "dest_offset");
 			if ((dest_offset + count) > len)
 				throw new ArgumentException ("Reading would overrun buffer");
 

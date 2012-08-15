@@ -92,7 +92,7 @@ namespace System.Net {
 					throw new InvalidOperationException ("Cannot be changed after headers are sent.");
 
 				if (value < 0)
-					throw new ArgumentOutOfRangeException ("Must be >= 0", "value");
+					throw new ArgumentOutOfRangeException ("value", "Must be >= 0");
 
 				cl_set = true;
 				content_length = value;

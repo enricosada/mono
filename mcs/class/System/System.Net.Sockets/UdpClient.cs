@@ -186,14 +186,14 @@ namespace System.Net.Sockets
 					this.family = addresses[i].AddressFamily;
 					Connect (new IPEndPoint (addresses[i], port));
 					break;
-				} catch(Exception e) {
+				} catch(Exception) {
 					if(i == addresses.Length - 1){
 						if(socket != null) {
 							socket.Close();
 							socket = null;
 						}
-						/// This is the last entry, re-throw the exception
-						throw e;
+						// This is the last entry, re-throw the exception
+						throw;
 					}
 				}
 			}
@@ -354,7 +354,7 @@ namespace System.Net.Sockets
 		{
 			CheckDisposed ();
 			if (dgram == null)
-				throw new ArgumentNullException ("dgram is null");
+				throw new ArgumentNullException ("dgram");
 			
 			if (active) {
 				if (endPoint != null)
@@ -446,7 +446,7 @@ namespace System.Net.Sockets
 			CheckDisposed ();
 			
 			if (asyncResult == null) {
-				throw new ArgumentNullException ("asyncResult is a null reference");
+				throw new ArgumentNullException ("asyncResult");
 			}
 			
 			return(socket.EndSend (asyncResult));
@@ -477,7 +477,7 @@ namespace System.Net.Sockets
 			CheckDisposed ();
 			
 			if (asyncResult == null) {
-				throw new ArgumentNullException ("asyncResult is a null reference");
+				throw new ArgumentNullException ("asyncResult");
 			}
 			
 			EndPoint ep;

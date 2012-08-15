@@ -288,7 +288,7 @@ namespace Microsoft.VisualBasic
 				loadIt = false;
 				CompilerError error = new CompilerError (string.Empty, 0, 0, "VBNC_CRASH", vbnc_output);
 				results.Errors.Add (error);
-			};
+			}
 
 			if (loadIt) {
 				if (options.GenerateInMemory) {

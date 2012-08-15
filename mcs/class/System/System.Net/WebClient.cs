@@ -193,7 +193,7 @@ namespace System.Net
 			get { return encoding; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("Encoding");
+					throw new ArgumentNullException("value", "Encoding");
 				encoding = value;
 			}
 		}

@@ -58,7 +58,7 @@ namespace System.Web {
 			set {
 				if ((value < AspNetHostingPermissionLevel.None) || (value > AspNetHostingPermissionLevel.Unrestricted)) {
 					string msg = Locale.GetText ("Invalid enum {0}.");
-					throw new ArgumentException (String.Format (msg, value), "Level");
+					throw new ArgumentException (String.Format (msg, value), "value");
 				}
 				_level = value;
 			}

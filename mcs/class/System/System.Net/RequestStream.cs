@@ -92,7 +92,7 @@ namespace System.Net {
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 			if (off < 0)
-				throw new ArgumentOutOfRangeException ("offset", "< 0");
+				throw new ArgumentOutOfRangeException ("off", "< 0");
 			if (count < 0)
 				throw new ArgumentOutOfRangeException ("count", "< 0");
 			int len = buffer.Length;
@@ -176,7 +176,7 @@ namespace System.Net {
 				throw new ObjectDisposedException (typeof (RequestStream).ToString ());
 
 			if (ares == null)
-				throw new ArgumentNullException ("async_result");
+				throw new ArgumentNullException ("ares");
 
 			if (ares is HttpStreamAsyncResult) {
 				HttpStreamAsyncResult r = (HttpStreamAsyncResult) ares;

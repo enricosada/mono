@@ -118,7 +118,7 @@ namespace System.Net {
 		public static void CheckUri (string uri)
 		{
 			if (uri == null)
-				throw new ArgumentNullException ("uriPrefix");
+				throw new ArgumentNullException ("uri");
 
 			int default_port = (uri.StartsWith ("http://")) ? 80 : -1;
 			if (default_port == -1)

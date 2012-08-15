@@ -69,7 +69,7 @@ namespace System.Net
 		public CookieContainer (int capacity)
 		{
 			if (capacity <= 0)
-				throw new ArgumentException ("Must be greater than zero", "Capacity");
+				throw new ArgumentException ("Must be greater than zero", "capacity");
 
 			this.capacity = capacity;
 		}
@@ -84,7 +84,7 @@ namespace System.Net
 					capacity));
 
 			if (maxCookieSize <= 0)
-				throw new ArgumentException ("Must be greater than zero", "MaxCookieSize");
+				throw new ArgumentException ("Must be greater than zero", "maxCookieSize");
 
 			this.perDomainCapacity = perDomainCapacity;
 			this.maxCookieSize = maxCookieSize;
@@ -132,7 +132,7 @@ namespace System.Net
 				throw new ArgumentNullException ("cookie");
 
 			if (cookie.Domain.Length == 0)
-				throw new ArgumentException ("Cookie domain not set.", "cookie.Domain");
+				throw new ArgumentException ("Cookie domain not set.", "cookie");
 
 			if (cookie.Value.Length > maxCookieSize)
 				throw new CookieException ("value is larger than MaxCookieSize.");

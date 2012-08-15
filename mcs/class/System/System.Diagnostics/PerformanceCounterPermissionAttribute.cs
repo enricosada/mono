@@ -61,7 +61,7 @@ namespace System.Diagnostics {
 			get { return categoryName; }
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("CategoryName");
+					throw new ArgumentNullException ("value", "CategoryName");
 				categoryName = value;
 			}
 		}

@@ -1624,7 +1624,7 @@ namespace System.Net.Sockets {
 			}
 
 			if (ares == null)
-				throw exc;
+				throw exc ?? new InvalidOperationException();
 
 			return req;
 		}
@@ -1736,7 +1736,7 @@ namespace System.Net.Sockets {
 			if (islistening)
 				throw new InvalidOperationException ("You may not perform this operation after calling the Listen method.");
 			if (e.RemoteEndPoint == null)
-				throw new ArgumentNullException ("remoteEP");
+				throw new ArgumentNullException ("e", "RemoteEndPoint");
 
 			return ConnectAsyncReal (e);
 		}
@@ -2048,7 +2048,7 @@ namespace System.Net.Sockets {
 
 			SocketAsyncResult req = asyncResult as SocketAsyncResult;
 			if (req == null)
-				throw new ArgumentException ("Invalid IAsyncResult", "result");
+				throw new ArgumentException ("Invalid IAsyncResult", "asyncResult");
 
 			if (Interlocked.CompareExchange (ref req.EndCalled, 1, 0) == 1)
 				throw InvalidAsyncOp ("EndSend");
@@ -2079,7 +2079,7 @@ namespace System.Net.Sockets {
 				throw new ArgumentNullException ("result");
 
 			if (end_point == null)
-				throw new ArgumentNullException ("remote_end");
+				throw new ArgumentNullException ("end_point");
 
 			SocketAsyncResult req = result as SocketAsyncResult;
 			if (req == null)

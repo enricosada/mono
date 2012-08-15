@@ -166,7 +166,7 @@ namespace System.Diagnostics {
 			get {return categoryName;}
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("categoryName");
+					throw new ArgumentNullException ("value", "CategoryName");
 				categoryName = value;
 				changed = true;
 			}
@@ -189,7 +189,7 @@ namespace System.Diagnostics {
 			get {return counterName;}
 			set {
 				if (value == null)
-					throw new ArgumentNullException ("counterName");
+					throw new ArgumentNullException ("value", "CounterName");
 				counterName = value;
 				changed = true;
 			}

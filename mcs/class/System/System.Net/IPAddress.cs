@@ -381,7 +381,7 @@ namespace System.Net {
 		///   All IP addresses of the form 127.X.Y.Z, where X, Y, and Z are in 
 		///   the range 0-255, are loopback addresses.
 		/// </summary>
-		/// <param name="addr">Address to compare</param>
+		/// <param name="address">Address to compare</param>
 		/// <returns></returns>
 		public static bool IsLoopback (IPAddress address)
 		{

@@ -866,7 +866,7 @@ namespace System.Net
 						nbytes = EnsureRead (wr.Buffer, wr.Offset, wr.Size);
 				} catch (Exception e) {
 					if (e is WebException)
-						throw e;
+						throw;
 
 					throw new WebException ("Invalid chunked data.", e,
 								WebExceptionStatus.ServerProtocolViolation, null);

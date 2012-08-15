@@ -273,8 +273,8 @@ namespace System.Diagnostics
 			uint instanceID = br.ReadUInt32 ();
 			int eventID = EventLog.GetEventID (instanceID);
 			short eventType = br.ReadInt16 (); // 24
-			short numStrings = br.ReadInt16 (); ; // 26
-			short categoryNumber = br.ReadInt16 (); ; // 28
+			short numStrings = br.ReadInt16 (); // 26
+			short categoryNumber = br.ReadInt16 (); // 28
 			// skip reservedFlags
 			br.ReadInt16 (); // 30
 			// skip closingRecordNumber

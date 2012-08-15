@@ -95,7 +95,7 @@ namespace System.Net
 
 			public override bool Equals (object obj) {
 				SPKey other = obj as SPKey;
-				if (obj == null) {
+				if (other == null) {
 					return false;
 				}
 

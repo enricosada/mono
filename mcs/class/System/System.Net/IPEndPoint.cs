@@ -78,7 +78,7 @@ namespace System.Net {
 				// LAMESPEC: no mention of sanity checking
 				// PS: MS controls the range when setting the value
 				if (value < MinPort || value > MaxPort)
-					throw new ArgumentOutOfRangeException ("Invalid port");
+					throw new ArgumentOutOfRangeException ("value", "Invalid port");
 			
 				port = value;
 			}
@@ -124,7 +124,7 @@ namespace System.Net {
 					
 					port	= (((int)sockaddr[2])<<8) + (int)sockaddr[3];
 
-					/// maybe flowid ?
+					// maybe flowid ?
 					/*
 					int unknown	= (int)sockaddr[4] +
 						(((int)sockaddr[5])<<8) +

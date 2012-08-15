@@ -349,7 +349,7 @@ namespace System.Net.Sockets
 					}
 					
 					break;
-				} catch (Exception e) {
+				} catch (Exception) {
 					/* Reinitialise the socket so
 					 * other properties still work
 					 * (see no-arg constructor)
@@ -361,7 +361,7 @@ namespace System.Net.Sockets
 					 * exception
 					 */
 					if (i == ipAddresses.Length - 1) {
-						throw e;
+						throw;
 					}
 				}
 			}

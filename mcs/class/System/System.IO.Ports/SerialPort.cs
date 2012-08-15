@@ -589,12 +589,13 @@ namespace System.IO.Ports
 			CheckOpen ();
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ("offset or count less than zero.");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count )
-				throw new ArgumentException ("offset+count",
-							      "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 			
 			return stream.Read (buffer, offset, count);
 		}
@@ -604,12 +605,13 @@ namespace System.IO.Ports
 			CheckOpen ();
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ("offset or count less than zero.");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count )
-				throw new ArgumentException ("offset+count",
-							      "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			int c, i;
 			for (i = 0; i < count && (c = ReadChar ()) != -1; i++)
@@ -714,12 +716,13 @@ namespace System.IO.Ports
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ();
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count)
-				throw new ArgumentException ("offset+count",
-							     "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			stream.Write (buffer, offset, count);
 		}
@@ -730,12 +733,13 @@ namespace System.IO.Ports
 			if (buffer == null)
 				throw new ArgumentNullException ("buffer");
 
-			if (offset < 0 || count < 0)
-				throw new ArgumentOutOfRangeException ();
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException ("offset", "offset less than zero.");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count", "count less than zero.");
 
 			if (buffer.Length - offset < count)
-				throw new ArgumentException ("offset+count",
-							     "The size of the buffer is less than offset + count.");
+				throw new ArgumentException ("The size of the buffer is less than offset + count.");
 
 			byte [] bytes = encoding.GetBytes (buffer, offset, count);
 			stream.Write (bytes, 0, bytes.Length);

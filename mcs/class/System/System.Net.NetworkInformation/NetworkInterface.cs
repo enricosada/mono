@@ -56,8 +56,8 @@ namespace System.Net.NetworkInformation {
 						return MacOsNetworkInterface.ImplGetAllNetworkInterfaces ();
 					else
 						return LinuxNetworkInterface.ImplGetAllNetworkInterfaces ();
-				} catch (SystemException ex) {
-					throw ex;
+				} catch (SystemException) {
+					throw;
 				} catch {
 					return new NetworkInterface [0];
 				}

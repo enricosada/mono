@@ -167,7 +167,7 @@ namespace System.Net {
 		public static IAsyncResult BeginGetHostAddresses (string hostNameOrAddress, AsyncCallback requestCallback, object state)
 		{
 			if (hostNameOrAddress == null)
-				throw new ArgumentNullException ("hostName");
+				throw new ArgumentNullException ("hostNameOrAddress");
 			if (hostNameOrAddress == "0.0.0.0" || hostNameOrAddress == "::0")
 				throw new ArgumentException ("Addresses 0.0.0.0 (IPv4) " +
 					"and ::0 (IPv6) are unspecified addresses. You " +
@@ -186,7 +186,7 @@ namespace System.Net {
 		public static IAsyncResult BeginGetHostEntry (string hostNameOrAddress, AsyncCallback requestCallback, object stateObject)
 		{
 			if (hostNameOrAddress == null)
-				throw new ArgumentNullException ("hostName");
+				throw new ArgumentNullException ("hostNameOrAddress");
 			if (hostNameOrAddress == "0.0.0.0" || hostNameOrAddress == "::0")
 				throw new ArgumentException ("Addresses 0.0.0.0 (IPv4) " +
 					"and ::0 (IPv6) are unspecified addresses. You " +

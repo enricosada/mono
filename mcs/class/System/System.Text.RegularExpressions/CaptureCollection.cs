@@ -58,7 +58,7 @@ namespace System.Text.RegularExpressions
 		public Capture this [int i] {
 			get {
 				if (i < 0 || i >= Count)
-					throw new ArgumentOutOfRangeException ("Index is out of range");
+					throw new ArgumentOutOfRangeException ("i", "Index is out of range");
 				return list [i];
 			}
 		}

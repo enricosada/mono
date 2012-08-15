@@ -48,8 +48,10 @@ namespace System.Net {
 				throw new ArgumentNullException ("host");
 			if (host == String.Empty)
 				throw new ArgumentException ("host parameter contains an empty string");
-			if (port < 0 || port > 0xffff)
-				throw new ArgumentOutOfRangeException ("port is less than 0 or greater than 0xffff");
+			if (port < 0)
+				throw new ArgumentOutOfRangeException ("port", "port is less than 0");
+			if (port > 0xffff)
+				throw new ArgumentOutOfRangeException("port", "port is greater than 0xffff");
 
 			this.host = host;
 			this.port = port;

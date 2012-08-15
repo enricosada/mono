@@ -419,12 +419,13 @@ namespace System.Security.Cryptography.X509Certificates {
 			MX.PKCS12 pfx = (password == null) ? new MX.PKCS12 (rawData) : new MX.PKCS12 (rawData, password);
 			if (pfx.Certificates.Count > 0) {
 				_cert = pfx.Certificates [0];
-			} else {
-				_cert = null;
+				if (pfx.Keys.Count > 0) {
+					_cert.RSA = (pfx.Keys[0] as RSA);
+					_cert.DSA = (pfx.Keys[0] as DSA);
+				}
 			}
-			if (pfx.Keys.Count > 0) {
-				_cert.RSA = (pfx.Keys [0] as RSA);
-				_cert.DSA = (pfx.Keys [0] as DSA);
+			else {
+				_cert = null;
 			}
 		}
 

@@ -223,9 +223,9 @@ namespace System.Configuration
 						break;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception) {
 				if (property.ThrowOnErrorDeserializing)
-					throw e;
+					throw;
 			}
 
 			return deserializedObject;

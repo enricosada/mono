@@ -149,9 +149,9 @@ namespace System.Security.Cryptography.X509Certificates {
 			if (array == null)
 				throw new ArgumentNullException ("array");
 			if (index < 0)
-				throw new ArgumentOutOfRangeException ("negative index");
+				throw new ArgumentOutOfRangeException ("index", "negative index");
 			if (index >= array.Length)
-				throw new ArgumentOutOfRangeException ("index >= array.Length");
+				throw new ArgumentOutOfRangeException ("index", "index >= array.Length");
 
 			_list.CopyTo (array, index);
 		}
@@ -161,9 +161,9 @@ namespace System.Security.Cryptography.X509Certificates {
 			if (array == null)
 				throw new ArgumentNullException ("array");
 			if (index < 0)
-				throw new ArgumentOutOfRangeException ("negative index");
+				throw new ArgumentOutOfRangeException ("index", "negative index");
 			if (index >= array.Length)
-				throw new ArgumentOutOfRangeException ("index >= array.Length");
+				throw new ArgumentOutOfRangeException ("index", "index >= array.Length");
 
 			_list.CopyTo (array, index);
 		}

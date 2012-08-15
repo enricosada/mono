@@ -85,7 +85,7 @@ namespace System.Net.Sockets
 		/// <summary>
 		/// Constructs a new TcpListener with a specified local endpoint
 		/// </summary>
-		/// <param name="local_end_point">The endpoint</param>
+		/// <param name="localEP">The endpoint</param>
 		public TcpListener (IPEndPoint localEP)
 		{
 			if (localEP == null)
@@ -98,7 +98,7 @@ namespace System.Net.Sockets
 		/// Constructs a new TcpListener, listening on a specified port
 		/// and IP (for use on a multi-homed machine)
 		/// </summary>
-		/// <param name="listen_ip">The IP to listen on</param>
+		/// <param name="localaddr">The IP to listen on</param>
 		/// <param name="port">The port to listen on</param>
 		public TcpListener (IPAddress localaddr, int port)
 		{

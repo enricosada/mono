@@ -768,13 +768,12 @@ class MsbuildGenerator {
 				if (lastMatching != null) {
 					addProjectReference (refs, result, lastMatching, r);
 				} else {
-					throw new NotSupportedException (string.Format ("From {0}, could not find a matching project reference for {1}", library, r));
 					refs.Append ("    <Reference Include=\"" + assembly + "\">" + NewLine);
 					refs.Append ("      <SpecificVersion>False</SpecificVersion>" + NewLine);
 					refs.Append ("      <HintPath>" + r + "</HintPath>" + NewLine);
 					refs.Append ("      <Aliases>" + alias + "</Aliases>" + NewLine);
 					refs.Append ("    </Reference>" + NewLine);
-
+					throw new NotSupportedException (string.Format ("From {0}, could not find a matching project reference for {1}", library, r));
 				}
 			}
 		}

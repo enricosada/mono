@@ -273,3 +273,6 @@
 #define g_utf8_get_char_validated monoeg_utf8_get_char_validated
 #define g_utf8_prev_char monoeg_utf8_prev_char
 #define g_utf8_to_ucs4 monoeg_utf8_to_ucs4
+
+#define strtoll     _strtoi64
+#define strtoull    _strtoui64
